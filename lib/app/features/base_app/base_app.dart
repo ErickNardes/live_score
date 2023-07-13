@@ -1,9 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:live_score/app/core/shared/theme/theme.dart';
 import 'package:live_score/app/features/home_page/pages/home_page.dart';
+import 'package:live_score/app/features/table_camp/presenter/pages/table_camp_page.dart';
+import 'package:live_score/app/features/table_camp/presenter/store/table_camp_store.dart';
 
 class BaseApp extends StatefulWidget {
   const BaseApp({super.key});
@@ -15,6 +18,7 @@ class BaseApp extends StatefulWidget {
 class _BaseAppState extends State<BaseApp> {
   @override
   Widget build(BuildContext context) {
+    final store = Modular.get<TableCampStore>();
     final size = MediaQuery.of(context).size;
 
     int currentIndex = 0;
@@ -90,9 +94,11 @@ class _BaseAppState extends State<BaseApp> {
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         children: [
-          const HomePage(),
-          Container(
-            color: Colors.black,
+          HomePage(
+            store: store,
+          ),
+          TableCampPage(
+            tableCampStore: store,
           ),
           Container(
             color: Colors.blue,

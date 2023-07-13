@@ -1,12 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:live_score/app/core/shared/theme/theme.dart';
 import 'package:live_score/app/features/live_match/card_normal_live_match.dart';
+import 'package:live_score/app/features/table_camp/presenter/store/table_camp_store.dart';
 
 import '../../../core/mock/times_mock/models/time_model.dart';
 import '../../live_match/widgets/card_live_match.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final TableCampStore store;
+  const HomePage({
+    Key? key,
+    required this.store,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -17,10 +25,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: ThemeColors.backgroundColor,
+      backgroundColor: Colors.grey[50],
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: size.height * 0.04, left: size.width * 0.05, right: size.width * 0.05),
+          padding: EdgeInsets.only(
+              top: size.height * 0.04,
+              left: size.width * 0.05,
+              right: size.width * 0.05),
           child: Column(
             children: [
               SizedBox(
