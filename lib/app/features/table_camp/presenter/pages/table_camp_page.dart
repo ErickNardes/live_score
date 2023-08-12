@@ -2,16 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
-import 'package:live_score/app/core/shared/theme/theme.dart';
-import 'package:live_score/app/features/table_camp/domain/table_camp_entity.dart';
-import 'package:live_score/app/features/table_camp/presenter/store/table_camp_store.dart';
+import 'package:live_score/app/features/home_page/controler/home_controller.dart';
 import 'package:live_score/app/features/table_camp/presenter/widgets/club_table_widget..dart';
 
 class TableCampPage extends StatefulWidget {
-  final TableCampStore tableCampStore;
-  TableCampPage({
+  final HomeController homeController;
+  final String title;
+
+  const TableCampPage({
     Key? key,
-    required this.tableCampStore,
+    required this.homeController,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -22,23 +23,26 @@ class _TableCampPageState extends State<TableCampPage> {
   @override
   void initState() {
     super.initState();
-    widget.tableCampStore.getTableCamp(10);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: ThemeColors.backgroundColor,
-        title: const Text(
-          'Brasileirão',
-          style: TextStyle(color: Colors.pink),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          widget.title,
+          style: const TextStyle(
+            color: Colors.black,
+          ),
         ),
       ),
-      backgroundColor: ThemeColors.backgroundColor,
       body: ScopedBuilder(
-        store: widget.tableCampStore,
+        store: widget.homeController.tableCampStore,
         onLoading: (context) => const Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation(Colors.white),
@@ -51,7 +55,14 @@ class _TableCampPageState extends State<TableCampPage> {
           ),
         ),
         onState: (context, state) {
-          ClubTableWidget(tableCampEntity: widget.tableCampStore.state.tableCamp.);
+          return ListView.builder(
+              itemCount:
+                  widget.homeController.tableCampStore.state.tableCamp.length,
+              itemBuilder: ((context, index) {
+                final item =
+                    widget.homeController.tableCampStore.state.tableCamp[index];
+                return ClubTableWidget(tableCampEntity: item);
+              }));
         },
       ),
     );

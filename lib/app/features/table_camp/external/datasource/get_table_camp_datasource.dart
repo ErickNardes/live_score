@@ -1,28 +1,23 @@
 import 'dart:convert';
 
+import 'package:live_score/app/core/shared/service/http/auth.dart';
 import 'package:live_score/app/features/table_camp/domain/table_camp_entity.dart';
 import 'package:live_score/app/features/table_camp/infra/datasource/i_get_table_camp_datasource.dart';
 import 'package:http/http.dart' as http;
 
+import '../../domain/params/get_table_camp_params.dart';
 import '../mappers/get_table_mappers.dart';
 
 class GetTableCampDatasource implements IGetTableCampDatasource {
   @override
-  Future<List<TableCampEntity>> call(int id) async {
+  Future<List<TableCampEntity>> call(GetTableCampParams params) async {
     final response = await http.get(
-        Uri.parse('https://api.api-futebol.com.br/v1/campeonatos/10/tabela'),
-        headers: {
-          'Authorization': 'Bearer live_4e4e5659284c27e0ee16168f3ccf8e'
-        });
-
-    final dynamic result = jsonDecode(response.body);
-    if (result is List) {
-      return result.map((e) => GetTableCampMappers.fromMap(e)).toList();
-    } else if (result is Map<String, dynamic>) {
-      final entity = GetTableCampMappers.fromMap(result);
-      return [entity];
-    } else {
-      throw Exception('Invalid response format');
-    }
+      Uri.parse(
+          'https://api.football-data.org/v4/competitions/${params.idCamp}/standings'),
+      headers: headers,
+    );
+    final result = jsonDecode(response.body);
+    final data = List.from(result['standings']);
+    return data.map((e) => GetTableCampMappers.fromMap(e)).first;
   }
 }

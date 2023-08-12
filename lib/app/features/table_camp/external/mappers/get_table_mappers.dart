@@ -3,19 +3,29 @@ import 'package:live_score/app/features/table_camp/domain/table_camp_entity.dart
 import '../../../club/domain/club_entity.dart';
 
 class GetTableCampMappers {
-  static TableCampEntity fromMap(Map<String, dynamic> map) {
-    final time = map['time'];
+  static List<TableCampEntity> fromMap(Map<String, dynamic> map) {
+    final table = map['table'];
+    final List<TableCampEntity> tableEntities = [];
 
-    final club = ClubEntity(
-      id: time['time_id'],
-      name: time['nome_popular'],
-      sigla: time['sigla'],
-      image: time['escudo'],
-    );
-    return TableCampEntity(
-      position: map['posicao'],
-      score: map['pontos'],
-      listClub: club,
-    );
+    for (var teamEntry in table) {
+      final team = teamEntry['team'];
+
+      final club = ClubEntity(
+        id: team['id'],
+        name: team['name'],
+        crestImage: team['crest'],
+        points: teamEntry['points'],
+      );
+
+      final tableCampEntity = TableCampEntity(
+        score: teamEntry['points'],
+        listClub: club,
+        positionClub: teamEntry['position'],
+      );
+
+      tableEntities.add(tableCampEntity);
+    }
+
+    return tableEntities;
   }
 }
