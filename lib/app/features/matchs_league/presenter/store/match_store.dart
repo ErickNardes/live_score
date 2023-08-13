@@ -32,7 +32,7 @@ class MatchStore extends Store<MatchState> {
       (r) => update(
         state.copyWith(
             matchLiveList:
-                r.where((element) => element.status == 'FINISHED').toList()),
+                r.where((element) => element.status == 'IN_PLAY').toList()),
       ),
     );
     setLoading(false);

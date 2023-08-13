@@ -8,6 +8,7 @@ class MatchMapper {
     final competition = map['competition'];
 
     final fullTime = score['fullTime'];
+    final halfTime = score['halfTime'];
 
     return MatchEntity(
       id: map['id'],

@@ -5,9 +5,7 @@ import 'package:flutter_triple/flutter_triple.dart';
 
 import 'package:live_score/app/features/home_page/controler/home_controller.dart';
 import 'package:live_score/app/features/leagues/presenter/store/widgets/list_leagues_widget.dart';
-import 'package:live_score/app/features/live_match/widgets/card_live_match.dart';
 import 'package:live_score/app/features/matchs_league/presenter/widgets/card_row_match_widget.dart';
-import 'package:live_score/app/features/table_camp/domain/params/get_table_camp_params.dart';
 
 import '../../matchs_league/presenter/widgets/card_match_live_widget.dart';
 
