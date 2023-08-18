@@ -5,9 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:live_score/app/features/home_page/controler/home_controller.dart';
 import 'package:live_score/app/features/home_page/pages/home_page.dart';
+import 'package:live_score/app/features/leagues/presenter/pages/league_page.dart';
 import 'package:live_score/app/features/table_camp/presenter/pages/list_leagues_page.dart';
-
-import '../../core/shared/helpers/svg_icon.dart';
 
 class BaseApp extends StatefulWidget {
   const BaseApp({super.key});
@@ -24,16 +23,10 @@ class _BaseAppState extends State<BaseApp> {
 
     int currentIndex = 0;
 
-    void setIndex(index) {
-      setState(() {
-        currentIndex = index;
-      });
-    }
-
     final pageController = PageController();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.green,
           onPressed: () {},
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -53,27 +46,26 @@ class _BaseAppState extends State<BaseApp> {
           ),
         ),
         appBar: AppBar(
+          // actions: const [
+          //   Padding(
+          //     padding: EdgeInsets.only(right: 24),
+          //     child: Icon(
+          //       Icons.search,
+          //       color: Colors.white,
+          //     ),
+          //   )
+          // ],
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: const Text(
-            'LiveScore',
+            'N Score',
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 23,
               fontWeight: FontWeight.bold,
             ),
           ),
           centerTitle: true,
-          leading: Padding(
-            padding: EdgeInsets.only(
-              left: size.width * 0.080,
-              top: size.height * 0.012,
-            ),
-            child: SvgPicture.asset(
-              'lib/assets/icons/menu.svg',
-              color: Colors.black,
-            ),
-          ),
         ),
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
@@ -82,6 +74,7 @@ class _BaseAppState extends State<BaseApp> {
             HomePage(
               homeController: controller,
             ),
+            LeaguesPage(homeController: controller),
             ListLeaguesPage(
               controller: controller,
             ),
@@ -91,43 +84,36 @@ class _BaseAppState extends State<BaseApp> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.black,
-          iconSize: size.height * 0.03,
           currentIndex: currentIndex,
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.green,
+          unselectedItemColor: Colors.black,
+          iconSize: size.height * 0.03,
           onTap: (index) {
-            setIndex(index);
-            currentIndex = index;
-            pageController.jumpToPage(index);
+            setState(() {
+              currentIndex = index;
+              pageController.jumpToPage(index);
+              pageController.animateToPage(index,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn);
+            });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
-              label: 'MENU',
-              icon: SvgIcon(
-                assetName: 'lib/assets/icons/home_icon.svg',
-                color: currentIndex == 0 ? Colors.pink : Colors.grey,
-              ),
+              label: 'HOME',
+              icon: Icon(Icons.menu),
             ),
             BottomNavigationBarItem(
               label: 'LIGAS',
-              icon: SvgIcon(
-                assetName: 'lib/assets/images/tabela.svg',
-                color: currentIndex == 1 ? Colors.pink : Colors.grey,
-              ),
+              icon: Icon(Icons.emoji_events),
             ),
             BottomNavigationBarItem(
-              label: 'TABELAS',
-              icon: SvgIcon(
-                assetName: 'lib/assets/images/tabela.svg',
-                color: currentIndex == 1 ? Colors.pink : Colors.grey,
-              ),
+              label: 'NEWS',
+              icon: Icon(Icons.newspaper),
             ),
             BottomNavigationBarItem(
               label: 'PERFIL',
-              icon: SvgIcon(
-                assetName: 'lib/assets/icons/profile_icon.svg',
-                color: currentIndex == 2 ? Colors.pink : Colors.grey,
-              ),
+              icon: Icon(Icons.person),
             ),
           ],
         ));

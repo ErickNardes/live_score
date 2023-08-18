@@ -13,7 +13,7 @@ class LeaguesMapper {
         emblem: league['logo'],
         selected: false,
         code: country['code'] ?? '',
-        cuntry: country['country'] ?? '',
+        cuntry: country['name'],
         flag: country['flag'] ?? '',
         type: league['type'],
         odds: coverage['odds']);

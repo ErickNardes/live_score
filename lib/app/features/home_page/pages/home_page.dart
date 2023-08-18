@@ -36,7 +36,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.grey[300],
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
@@ -147,42 +146,6 @@ class _HomePageState extends State<HomePage> {
               //         : Container();
               //   },
               // ),
-              SizedBox(
-                height: size.height * 0.05,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Próximas partidas',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: size.width * 0.05),
-                  ),
-                  Text(
-                    'ver mais',
-                    style: TextStyle(
-                      fontSize: size.width * 0.033,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepOrangeAccent,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              ScopedBuilder(
-                store: widget.homeController.leagueStore,
-                onState: (context, state) {
-                  return SizedBox(
-                      width: size.width,
-                      height: size.height * 0.7,
-                      child: ListTileWidget(
-                        leagueStore: widget.homeController.leagueStore,
-                      ));
-                },
-              ),
             ],
           ),
         ),
