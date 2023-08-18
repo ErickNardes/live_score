@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:live_score/app/core/shared/service/http/auth.dart';
 import 'package:live_score/app/features/leagues/domain/entities/leagues_entity.dart';
 import 'package:live_score/app/features/leagues/external/end_point/get_leagues_end_point.dart';
 import 'package:live_score/app/features/leagues/external/mappers/league_mappers.dart';
@@ -13,13 +14,11 @@ class GetLeagueDatasource implements IGetLeagueDatasource {
       Uri.parse(
         getLeaguesEndPoint,
       ),
-      headers: {
-        'X-Auth-Token': 'ec14d25454444a03b86d158e7a94820f',
-      },
+      headers: headers,
     );
 
     final result = jsonDecode(response.body);
-    final data = List.from(result['competitions']);
+    final data = List.from(result['response']);
 
     return data.map((e) => LeaguesMapper.fromMap(e)).toList();
   }

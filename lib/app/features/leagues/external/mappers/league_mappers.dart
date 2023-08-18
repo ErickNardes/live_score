@@ -2,13 +2,20 @@ import 'package:live_score/app/features/leagues/domain/entities/leagues_entity.d
 
 class LeaguesMapper {
   static LeagueEntity fromMap(Map<String, dynamic> map) {
-    final area = map['area'];
+    final country = map['country'];
+    final seasons = map['seasons'];
+    final coverage = seasons[0]['coverage'];
+    final league = map['league'];
     return LeagueEntity(
-      id: map['id'],
-      name: map['name'],
-      logo: area['flag'] ?? '',
-      emblem: map['emblem'],
-      selected: false,
-    );
+        id: league['id'],
+        name: league['name'],
+        logo: country['flag'] ?? '',
+        emblem: league['logo'],
+        selected: false,
+        code: country['code'] ?? '',
+        cuntry: country['country'] ?? '',
+        flag: country['flag'] ?? '',
+        type: league['type'],
+        odds: coverage['odds']);
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 
 import 'package:live_score/app/features/home_page/controler/home_controller.dart';
-import 'package:live_score/app/features/table_camp/presenter/widgets/club_table_widget..dart';
 
 class TableCampPage extends StatefulWidget {
   final HomeController homeController;
@@ -55,14 +54,43 @@ class _TableCampPageState extends State<TableCampPage> {
           ),
         ),
         onState: (context, state) {
-          return ListView.builder(
-              itemCount:
-                  widget.homeController.tableCampStore.state.tableCamp.length,
-              itemBuilder: ((context, index) {
-                final item =
-                    widget.homeController.tableCampStore.state.tableCamp[index];
-                return ClubTableWidget(tableCampEntity: item);
-              }));
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: DataTable(
+                columns: const [
+                  DataColumn(label: Text('')),
+                  DataColumn(label: Text('')),
+                  DataColumn(label: Text('J')),
+                  DataColumn(label: Text('SG')),
+                  DataColumn(label: Text('P')),
+                ],
+                rows: widget.homeController.tableCampStore.state.tableCamp
+                    .map((item) {
+                  return DataRow(cells: [
+                    DataCell(Text(
+                      item.positionClub.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                    DataCell(Text(
+                      item.listClub.name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                    DataCell(Text(
+                      item.listClub.playedGames.toString(),
+                      style: const TextStyle(),
+                    )),
+                    DataCell(Text(item.listClub.goalDifference.toString())),
+                    DataCell(Text(item.score.toString())),
+                    // ... Add more cells as needed
+                  ]);
+                }).toList(),
+              ),
+            ),
+          );
         },
       ),
     );

@@ -15,10 +15,10 @@ class LeagueStore extends Store<LeagueState> {
     final result = await _iGetLeaguesUsecase.call();
     result.fold(
         (l) => setError(l), (r) => update(state.copiWith(listLeague: r)));
+    setLoading(false);
   }
 
   Future<void> selectedLeague(int indexList) async {
     update(state.copiWith(leagueSelected: indexList));
-    print(indexList);
   }
 }

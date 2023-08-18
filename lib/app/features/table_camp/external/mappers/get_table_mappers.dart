@@ -12,9 +12,11 @@ class GetTableCampMappers {
 
       final club = ClubEntity(
         id: team['id'],
-        name: team['name'],
+        name: team['shortName'],
         crestImage: team['crest'],
         points: teamEntry['points'],
+        goalDifference: teamEntry['goalDifference'],
+        playedGames: teamEntry['playedGames'],
       );
 
       final tableCampEntity = TableCampEntity(
