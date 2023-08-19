@@ -13,10 +13,11 @@ class TableCampStore extends Store<TableCampState> {
         super(TableCampState.init());
 
   Future<void> getTableCamp(GetTableCampParams params) async {
+    setLoading(true);
     final result = await _iGetTableCampUsecase.call(params);
-    print(params.idCamp);
     return result.fold((l) => setError(l), (r) {
       update(state.copiWith(tableCamp: r));
+      setLoading(false);
     });
   }
 }

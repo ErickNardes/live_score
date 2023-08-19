@@ -8,8 +8,8 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       theme: ThemeData(
-          useMaterial3: true,
-          scaffoldBackgroundColor: const Color.fromARGB(255, 44, 44, 44)),
+        useMaterial3: true,
+      ),
       debugShowCheckedModeBanner: false,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,

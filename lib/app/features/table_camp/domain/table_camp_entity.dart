@@ -1,13 +1,35 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import '../../club/domain/club_entity.dart';
-
 class TableCampEntity {
-  final int positionClub;
-  final int score;
-  final ClubEntity listClub;
+  final int id;
+  final int rank;
+  final int idTeam;
+  final String nameTeam;
+  final String logoTeam;
+  final int points;
+  final int goalsDiff;
+  final int played;
+  final int win;
+  final int draw;
+  final int lose;
+  final int goalFor;
+  final int goalAgainst;
+  final String country;
+  final String logo;
+
   TableCampEntity({
-    required this.positionClub,
-    required this.score,
-    required this.listClub,
+    required this.id,
+    required this.rank,
+    required this.idTeam,
+    required this.nameTeam,
+    required this.logoTeam,
+    required this.points,
+    required this.goalsDiff,
+    required this.played,
+    required this.win,
+    required this.draw,
+    required this.lose,
+    required this.goalFor,
+    required this.goalAgainst,
+    required this.country,
+    required this.logo,
   });
 }

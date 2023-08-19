@@ -13,11 +13,13 @@ class GetTableCampDatasource implements IGetTableCampDatasource {
   Future<List<TableCampEntity>> call(GetTableCampParams params) async {
     final response = await http.get(
       Uri.parse(
-          'https://api.football-data.org/v4/competitions/${params.idCamp}/standings'),
+          'https://v3.football.api-sports.io/standings?season=2023&league=${params.idCamp}'),
       headers: headers,
     );
+
     final result = jsonDecode(response.body);
-    final data = List.from(result['standings']);
-    return data.map((e) => GetTableCampMappers.fromMap(e)).first;
+    final standingsList = result['response'];
+
+    return GetTableCampMappers.fromMapList(standingsList);
   }
 }

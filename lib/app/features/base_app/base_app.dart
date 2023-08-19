@@ -25,8 +25,9 @@ class _BaseAppState extends State<BaseApp> {
 
     final pageController = PageController();
     return Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.black,
           onPressed: () {},
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -46,21 +47,12 @@ class _BaseAppState extends State<BaseApp> {
           ),
         ),
         appBar: AppBar(
-          // actions: const [
-          //   Padding(
-          //     padding: EdgeInsets.only(right: 24),
-          //     child: Icon(
-          //       Icons.search,
-          //       color: Colors.white,
-          //     ),
-          //   )
-          // ],
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: const Text(
             'N Score',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 23,
               fontWeight: FontWeight.bold,
             ),
@@ -86,8 +78,8 @@ class _BaseAppState extends State<BaseApp> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.pink,
+          unselectedItemColor: Colors.grey,
           iconSize: size.height * 0.03,
           onTap: (index) {
             setState(() {

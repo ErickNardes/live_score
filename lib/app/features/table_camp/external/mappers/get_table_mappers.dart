@@ -1,31 +1,39 @@
 import 'package:live_score/app/features/table_camp/domain/table_camp_entity.dart';
 
-import '../../../club/domain/club_entity.dart';
-
 class GetTableCampMappers {
-  static List<TableCampEntity> fromMap(Map<String, dynamic> map) {
-    final table = map['table'];
+  static List<TableCampEntity> fromMapList(List<dynamic> list) {
     final List<TableCampEntity> tableEntities = [];
 
-    for (var teamEntry in table) {
-      final team = teamEntry['team'];
+    for (var standingsList in list) {
+      final standings = standingsList['league']['standings']
+          [0]; // Acessar a lista de standings
+      final league = standingsList['league'];
 
-      final club = ClubEntity(
-        id: team['id'],
-        name: team['shortName'],
-        crestImage: team['crest'],
-        points: teamEntry['points'],
-        goalDifference: teamEntry['goalDifference'],
-        playedGames: teamEntry['playedGames'],
-      );
+      for (var standingsEntry in standings) {
+        final all = standingsEntry['all'];
+        final team = standingsEntry['team'];
+        final goals = all['goals'];
 
-      final tableCampEntity = TableCampEntity(
-        score: teamEntry['points'],
-        listClub: club,
-        positionClub: teamEntry['position'],
-      );
+        final tableCampEntity = TableCampEntity(
+          rank: standingsEntry['rank'],
+          idTeam: team['id'],
+          nameTeam: team['name'],
+          logoTeam: team['logo'],
+          points: standingsEntry['points'],
+          goalsDiff: standingsEntry['goalsDiff'],
+          played: all['played'],
+          win: all['win'],
+          draw: all['draw'],
+          lose: all['lose'],
+          goalFor: goals['for'],
+          goalAgainst: goals['against'],
+          country: league['country'],
+          logo: league['logo'],
+          id: league['id'],
+        );
 
-      tableEntities.add(tableCampEntity);
+        tableEntities.add(tableCampEntity);
+      }
     }
 
     return tableEntities;

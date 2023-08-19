@@ -1,16 +1,11 @@
 class ClubEntity {
   final int id;
   final String name;
-  final String crestImage;
-  final int points;
-  final int playedGames;
-  final int goalDifference;
+  final String logo;
+
   ClubEntity({
     required this.id,
     required this.name,
-    required this.crestImage,
-    required this.points,
-    required this.playedGames,
-    required this.goalDifference,
+    required this.logo,
   });
 }

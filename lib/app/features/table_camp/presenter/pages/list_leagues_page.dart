@@ -38,6 +38,7 @@ class _ListLeaguesPageState extends State<ListLeaguesPage> {
                     return TableCampPage(
                       homeController: widget.controller,
                       title: league.name,
+                      imageBar: league.emblem,
                     );
                   }));
                   await widget.controller.getTableCamp(league.id);

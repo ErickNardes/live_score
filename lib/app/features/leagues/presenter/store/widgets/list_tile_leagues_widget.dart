@@ -26,7 +26,10 @@ class _ListTileWidgetState extends State<ListTileWidget> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final leaguesByCountry = widget.leagueStore.state.leaguesByCountry;
-    return ListView.builder(
+    return ListView.separated(
+      separatorBuilder: (context, index) {
+        return const Divider();
+      },
       itemCount: leaguesByCountry.keys.length,
       itemBuilder: (context, countryIndex) {
         final countryCode = leaguesByCountry.keys.toList()[countryIndex];
@@ -45,7 +48,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
           title: Text(
             leaguesInCountry.first.cuntry,
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -56,13 +59,14 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                   onTap: () async {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                       return TableCampPage(
+                        imageBar: league.emblem,
                         homeController: widget.homeController,
-                        title: '',
+                        title: league.name,
                       );
                     }));
                     await widget.homeController.getTableCamp(league.id);
                   },
-                  iconColor: Colors.white,
+                  iconColor: Colors.black,
 
                   leading: SizedBox(
                     width: 20,
@@ -70,7 +74,7 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                   ),
                   title: Text(
                     league.name,
-                    style: const TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.black),
                   ),
                   // Resto do conteúdo do ListTile conforme necessário
                 );
