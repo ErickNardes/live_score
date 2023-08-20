@@ -19,10 +19,10 @@ class _CardNormalLiveMatchState extends State<CardNormalLiveMatch> {
         borderRadius: BorderRadius.circular(24),
         color: ThemeColors.secondBackgroud,
       ),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             '60 : 22',
             style: TextStyle(color: Colors.white54),
           ),

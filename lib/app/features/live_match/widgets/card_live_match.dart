@@ -35,9 +35,9 @@ class _CardLiveMatchState extends State<CardLiveMatch> {
               borderRadius: BorderRadius.circular(24),
               color: ThemeColors.secondBackgroud,
             ),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        children: [
           Text(
             '60 : 22',
             style: TextStyle(color: Colors.white54),

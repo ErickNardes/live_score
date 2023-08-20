@@ -36,7 +36,7 @@ class _ListLeagueWidgetState extends State<ListLeagueWidget> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(22),
           color: widget.indexLeague == widget.indexMatch
-              ? Color.fromARGB(255, 167, 15, 65)
+              ? const Color.fromARGB(255, 167, 15, 65)
               : Colors.white,
         ),
         child: Padding(

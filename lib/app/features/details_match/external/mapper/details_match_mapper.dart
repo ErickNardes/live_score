@@ -2,7 +2,6 @@ import 'package:live_score/app/features/details_match/domain/entities/details_ma
 
 class DetailsMatchMapper {
   static DetailsMatchEntity fromMap(Map<String, dynamic> map) {
-    final competition = map['competition'];
     final homeTeam = map['homeTeam'];
     final coachHomeTeam = homeTeam['coach'];
     final lineUpHome = homeTeam['lineup'];
