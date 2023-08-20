@@ -50,10 +50,10 @@ class _BaseAppState extends State<BaseApp> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: const Text(
-            'N Score',
+            'My Scores',
             style: TextStyle(
               color: Colors.black,
-              fontSize: 23,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:live_score/app/features/matchs_league/domain/entities/macthe_entity.dart';
+import 'package:live_score/app/features/matchs_live/domain/entities/macthe_entity.dart';
 
 class CardMatchLiveWidget extends StatefulWidget {
-  final MatchEntity matchEntity;
+  final MatchLiveEntity matchEntity;
   final Function() onTap;
 
   const CardMatchLiveWidget({
@@ -46,23 +46,23 @@ class _CardMatchLiveWidgetState extends State<CardMatchLiveWidget> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              widget.matchEntity.crestHomeTeam.contains('.png')
+                              widget.matchEntity.logoHomeTeam.contains('.png')
                                   ? SizedBox(
                                       height: size.height * 0.06,
                                       width: size.width * 0.1,
                                       child: Image.network(
-                                          widget.matchEntity.crestHomeTeam))
+                                          widget.matchEntity.logoHomeTeam))
                                   : SizedBox(
                                       height: size.height * 0.05,
                                       width: size.width * 0.1,
                                       child: SvgPicture.network(
-                                          widget.matchEntity.crestHomeTeam),
+                                          widget.matchEntity.logoHomeTeam),
                                     ),
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
                               Text(
-                                widget.matchEntity.shortNameHomeTeam,
+                                widget.matchEntity.logoHomeTeam,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   color: Colors.white,
@@ -86,7 +86,7 @@ class _CardMatchLiveWidgetState extends State<CardMatchLiveWidget> {
                           width: size.width * 0.03,
                         ),
                         Text(
-                          widget.matchEntity.scoreHome.toString(),
+                          widget.matchEntity.goalHome.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: size.height * 0.04,
@@ -118,7 +118,7 @@ class _CardMatchLiveWidgetState extends State<CardMatchLiveWidget> {
                           width: size.width * 0.02,
                         ),
                         Text(
-                          widget.matchEntity.scoreAway.toString(),
+                          widget.matchEntity.goalAway.toString(),
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: size.height * 0.04,
@@ -131,23 +131,23 @@ class _CardMatchLiveWidgetState extends State<CardMatchLiveWidget> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              widget.matchEntity.crestAwayTeam.contains('.png')
+                              widget.matchEntity.logoHomeTeam.contains('.png')
                                   ? SizedBox(
                                       height: size.height * 0.06,
                                       width: size.width * 0.1,
                                       child: Image.network(
-                                          widget.matchEntity.crestAwayTeam))
+                                          widget.matchEntity.logoHomeTeam))
                                   : SizedBox(
                                       height: size.height * 0.05,
                                       width: size.width * 0.1,
                                       child: SvgPicture.network(
-                                          widget.matchEntity.crestAwayTeam),
+                                          widget.matchEntity.logoHomeTeam),
                                     ),
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
                               Text(
-                                widget.matchEntity.shortNameAwayTeam,
+                                widget.matchEntity.nameHomeTeam,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   color: Colors.white,

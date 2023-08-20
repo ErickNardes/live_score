@@ -1,8 +1,8 @@
-import 'package:live_score/app/features/matchs_league/domain/entities/macthe_entity.dart';
+import 'package:live_score/app/features/matchs_live/domain/entities/macthe_entity.dart';
 
 class MatchState {
-  final List<MatchEntity> matchFutureList;
-  final List<MatchEntity> matchLiveList;
+  final List<MatchLiveEntity> matchFutureList;
+  final List<MatchLiveEntity> matchLiveList;
   MatchState({
     required this.matchFutureList,
     required this.matchLiveList,
@@ -13,8 +13,8 @@ class MatchState {
         matchLiveList: [],
       );
   MatchState copyWith({
-    List<MatchEntity>? matchLiveList,
-    List<MatchEntity>? matchFutureList,
+    List<MatchLiveEntity>? matchLiveList,
+    List<MatchLiveEntity>? matchFutureList,
   }) {
     return MatchState(
       matchFutureList: matchFutureList ?? this.matchFutureList,
