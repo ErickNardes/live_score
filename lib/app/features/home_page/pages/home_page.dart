@@ -5,10 +5,10 @@ import 'package:flutter_triple/flutter_triple.dart';
 
 import 'package:live_score/app/features/home_page/controler/home_controller.dart';
 import 'package:live_score/app/features/leagues/presenter/store/widgets/list_leagues_widget.dart';
-import 'package:live_score/app/features/matchs_league/presenter/widgets/card_row_match_widget.dart';
+import 'package:live_score/app/features/matchs_live/presenter/widgets/card_row_match_widget.dart';
 
 import '../../leagues/presenter/store/widgets/list_tile_leagues_widget.dart';
-import '../../matchs_league/presenter/widgets/card_match_live_widget.dart';
+import '../../matchs_live/presenter/widgets/card_match_live_widget.dart';
 
 class HomePage extends StatefulWidget {
   final HomeController homeController;
