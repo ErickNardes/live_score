@@ -18,8 +18,9 @@ class LeagueStore extends Store<LeagueState> {
     result.fold(
       (l) => setError(l),
       (r) {
-        final filteredLeagues =
-            r.where((league) => league.odds == true).toList();
+        final filteredLeagues = r
+            .where((league) => league.odds == true || league == false)
+            .toList();
 
         final leaguesByCountry = <String, List<LeagueEntity>>{};
 

@@ -25,27 +25,27 @@ class _BaseAppState extends State<BaseApp> {
 
     final pageController = PageController();
     return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.black,
-          onPressed: () {},
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-              child: Column(
-                children: [
-                  Expanded(
-                    child: SvgPicture.asset(
-                      'lib/assets/icons/live_menu.svg',
-                      color: Colors.white,
-                      height: 30,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // floatingActionButton: FloatingActionButton(
+        //   backgroundColor: Colors.black,
+        //   onPressed: () {},
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(8.0),
+        //     child: Center(
+        //       child: Column(
+        //         children: [
+        //           Expanded(
+        //             child: SvgPicture.asset(
+        //               'lib/assets/icons/live_menu.svg',
+        //               color: Colors.white,
+        //               height: 30,
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -92,8 +92,8 @@ class _BaseAppState extends State<BaseApp> {
           },
           items: const [
             BottomNavigationBarItem(
-              label: 'HOME',
-              icon: Icon(Icons.menu),
+              label: 'AO VIVO ',
+              icon: Icon(Icons.live_tv),
             ),
             BottomNavigationBarItem(
               label: 'LIGAS',

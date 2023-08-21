@@ -4,12 +4,14 @@ class MatchLiveEntity {
   final int idVanue;
   final String nameVanue;
   final String cityVanue;
+  final String statusShort;
   final String stattusLong;
   final int statusElapsed;
   final int idLeague;
   final String nameLeague;
   final String logoLeague;
   final String flagLeague;
+  final String countryLeague;
   final int season;
   final int idHomeTeam;
   final String nameHomeTeam;
@@ -25,12 +27,14 @@ class MatchLiveEntity {
     required this.idVanue,
     required this.nameVanue,
     required this.cityVanue,
+    required this.statusShort,
     required this.stattusLong,
     required this.statusElapsed,
     required this.idLeague,
     required this.nameLeague,
     required this.logoLeague,
     required this.flagLeague,
+    required this.countryLeague,
     required this.season,
     required this.idHomeTeam,
     required this.nameHomeTeam,

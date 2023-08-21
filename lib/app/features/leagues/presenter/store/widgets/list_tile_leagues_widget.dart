@@ -67,7 +67,6 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                     await widget.homeController.getTableCamp(league.id);
                   },
                   iconColor: Colors.black,
-
                   leading: SizedBox(
                     width: 20,
                     child: Image.network(league.emblem),
@@ -76,7 +75,6 @@ class _ListTileWidgetState extends State<ListTileWidget> {
                     league.name,
                     style: const TextStyle(color: Colors.black),
                   ),
-                  // Resto do conteúdo do ListTile conforme necessário
                 );
               }).toList(),
             ),
