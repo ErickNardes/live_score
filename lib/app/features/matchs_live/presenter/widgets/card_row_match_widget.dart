@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:live_score/app/features/matchs_league/domain/entities/macthe_entity.dart';
+import 'package:live_score/app/features/matchs_live/domain/entities/macthe_entity.dart';
 import 'package:intl/intl.dart';
 
 class CardRowMatchWidget extends StatefulWidget {
-  final MatchEntity matchEntity;
+  final MatchLiveEntity matchEntity;
   const CardRowMatchWidget({
     Key? key,
     required this.matchEntity,
@@ -29,27 +29,27 @@ class _CardRowMatchWidgetState extends State<CardRowMatchWidget> {
             children: [
               Expanded(
                 child: Text(
-                  widget.matchEntity.shortNameHomeTeam,
+                  widget.matchEntity.nameHomeTeam,
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 13,
                   ),
                 ),
               ),
-              widget.matchEntity.crestHomeTeam.contains('.png')
+              widget.matchEntity.logoHomeTeam.contains('.png')
                   ? Expanded(
                       child: SizedBox(
                           height: size.height * 0.04,
                           width: size.width * 0.1,
                           child:
-                              Image.network(widget.matchEntity.crestHomeTeam)),
+                              Image.network(widget.matchEntity.logoHomeTeam)),
                     )
                   : Expanded(
                       child: SizedBox(
                         height: size.height * 0.04,
                         width: size.width * 0.1,
-                        child: SvgPicture.network(
-                            widget.matchEntity.crestHomeTeam),
+                        child:
+                            SvgPicture.network(widget.matchEntity.logoHomeTeam),
                       ),
                     ),
               Expanded(
@@ -58,7 +58,7 @@ class _CardRowMatchWidgetState extends State<CardRowMatchWidget> {
                   children: [
                     Text(
                       DateFormat('dd/MM').format(DateTime.parse(
-                        widget.matchEntity.utcDate.toString(),
+                        widget.matchEntity.dateMatch.toString(),
                       )),
                       style: const TextStyle(
                           color: Colors.orange, fontWeight: FontWeight.bold),
@@ -66,25 +66,25 @@ class _CardRowMatchWidgetState extends State<CardRowMatchWidget> {
                   ],
                 ),
               ),
-              widget.matchEntity.crestAwayTeam.contains('.png')
+              widget.matchEntity.logoHomeTeam.contains('.png')
                   ? Expanded(
                       child: SizedBox(
                           height: size.height * 0.04,
                           width: size.width * 0.1,
                           child:
-                              Image.network(widget.matchEntity.crestAwayTeam)),
+                              Image.network(widget.matchEntity.logoHomeTeam)),
                     )
                   : Expanded(
                       child: SizedBox(
                         height: size.height * 0.04,
                         width: size.width * 0.1,
-                        child: SvgPicture.network(
-                            widget.matchEntity.crestAwayTeam),
+                        child:
+                            SvgPicture.network(widget.matchEntity.logoHomeTeam),
                       ),
                     ),
               Expanded(
                 child: Text(
-                  widget.matchEntity.shortNameAwayTeam,
+                  widget.matchEntity.nameAwayTeam,
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 13,

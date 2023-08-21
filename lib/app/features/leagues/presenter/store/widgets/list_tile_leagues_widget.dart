@@ -36,10 +36,10 @@ class _ListTileWidgetState extends State<ListTileWidget> {
         final leaguesInCountry = leaguesByCountry[countryCode]!;
 
         return ExpansionTile(
-          collapsedIconColor: Colors.green,
+          collapsedIconColor: Colors.pink,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          iconColor: Colors.white,
+          iconColor: Colors.pink,
           leading: SizedBox(
             width: size.width * 0.06,
             child:

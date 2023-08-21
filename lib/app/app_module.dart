@@ -4,10 +4,10 @@ import 'package:live_score/app/features/leagues/domain/usecase/get_leagues_useca
 import 'package:live_score/app/features/leagues/external/datasource/get_league_datasource.dart';
 import 'package:live_score/app/features/leagues/infra/repository/get_leagues_repository.dart';
 import 'package:live_score/app/features/leagues/presenter/store/league_store.dart';
-import 'package:live_score/app/features/matchs_league/domain/entities/usecase/get_match_of_league_usecase.dart';
-import 'package:live_score/app/features/matchs_league/external/datasource/get_match_of_league_datasource.dart';
-import 'package:live_score/app/features/matchs_league/infra/repository/get_match_of_league_repository.dart';
-import 'package:live_score/app/features/matchs_league/presenter/store/match_store.dart';
+import 'package:live_score/app/features/matchs_live/domain/entities/usecase/get_match_of_league_usecase.dart';
+import 'package:live_score/app/features/matchs_live/external/datasource/get_match_of_league_datasource.dart';
+import 'package:live_score/app/features/matchs_live/infra/repository/get_match_of_league_repository.dart';
+import 'package:live_score/app/features/matchs_live/presenter/store/match_store.dart';
 import 'package:live_score/app/features/table_camp/domain/usecase/get_table_camp_usecase.dart';
 import 'package:live_score/app/features/table_camp/external/datasource/get_table_camp_datasource.dart';
 import 'package:live_score/app/features/table_camp/infra/get_table_camp_repository.dart';
