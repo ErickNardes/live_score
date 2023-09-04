@@ -9,7 +9,7 @@ class GetDetailsMatchRepository implements IGetDetailsMatchRepository {
   const GetDetailsMatchRepository(this._datasource);
 
   @override
-  Future<Either<Exception, DetailsMatchEntity>> call(int idMatch) async {
+  Future<Either<Exception, List<DetailsMatchEntity>>> call(int idMatch) async {
     try {
       final response = await _datasource.call(idMatch);
       return Right(response);

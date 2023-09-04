@@ -1,67 +1,38 @@
 import 'package:live_score/app/features/details_match/domain/entities/details_match_entity.dart';
 
 class DetailsMatchMapper {
+  static List<DetailsMatchEntity> fromMapList(List<dynamic> list) {
+    return list.map((map) => fromMap(map)).toList();
+  }
+
   static DetailsMatchEntity fromMap(Map<String, dynamic> map) {
-    final homeTeam = map['homeTeam'];
-    final coachHomeTeam = homeTeam['coach'];
-    final lineUpHome = homeTeam['lineup'];
-    final statisticHome = homeTeam['statistics'];
-    final awayTeam = map['awayTeam'];
-    final coachAwayTeam = awayTeam['coach'];
-    final lineUpAway = awayTeam['lineup'];
-    final statisticsAway = awayTeam['statistics'];
+    final team = map['team'];
+    final statistics = map['statistics'];
 
     return DetailsMatchEntity(
-        idMatch: map['id'],
-        utcDate: map['utcDate'],
-        status: map['status'],
-        minute: map['minute'],
-        injuryTime: map['injuryTime'],
-        vanue: map['vanue'],
-        matchDay: map['matchDay'],
-        idHomeTeam: homeTeam['id'],
-        shortHomeTeam: homeTeam['shortName'],
-        homeTla: homeTeam['tla'],
-        homeTeamCresp: homeTeam['crest'],
-        coachHomeTeam: coachHomeTeam['id'],
-        coachNameHomeTeam: coachHomeTeam['name'],
-        homeFormattion: homeTeam['formation'],
-        idPlayerHome: lineUpHome['id'],
-        namePlayerHome: lineUpHome['name'],
-        positionPlayrHome: lineUpHome['position'],
-        numberPlayerHome: lineUpHome['shirtNumber'],
-        connerHome: statisticHome['coner_kicks'],
-        freeKicksHome: statisticHome['free_kicks'],
-        goalKicksHome: statisticHome['goal_kicks'],
-        offsidesHome: statisticHome['offsides'],
-        foulsHome: statisticHome['fouls'],
-        ballPossessionHome: statisticHome['ball_possession'],
-        shotshome: statisticHome['shots'],
-        shotOnGoalHome: statisticHome['shots_on_goal'],
-        shotOffGoalHome: statisticHome['shots_off_goal'],
-        yellowCardHome: statisticHome['yellow_cards'],
-        redCardHome: statisticHome['red_cards'],
-        idWayTeam: awayTeam['id'],
-        shortWayTeam: awayTeam['shortName'],
-        wayTla: awayTeam['tla'],
-        wayTeamCresp: awayTeam['crest'],
-        coachWayTeam: coachAwayTeam['id'],
-        coachNameWayTeam: coachAwayTeam['name'],
-        wayFormattion: awayTeam['formation'],
-        idPlayerWay: lineUpAway['id'],
-        namePlayerWay: lineUpAway['name'],
-        positionPlayrWay: lineUpAway['position'],
-        numberPlayerWay: lineUpAway['shirtNumber'],
-        connerWay: statisticsAway['corner_kicks'],
-        freeKicksWay: statisticsAway['free_kicks'],
-        goalKicksWay: statisticsAway['goal_kicks'],
-        offsidesWay: statisticsAway['offsides'],
-        foulsWay: statisticsAway['fouls'],
-        ballPossessionWay: statisticsAway['ball_possession'],
-        shotsWay: statisticsAway['shots'],
-        shotOnGoalWay: statisticsAway['shots_on_goal'],
-        shotOffGoalWay: statisticsAway['shots_off_goal'],
-        yellowCardWay: statisticsAway['yellow_cards'],
-        redCardWay: statisticsAway['red_cards']);
+      id: team['id'],
+      nameTeam: team['name'],
+      logoTeam: team['logo'],
+      shotsOnGoal: _getStatisticValue(statistics, "Shots on Goal") ?? 0,
+      shotsOffGoal: _getStatisticValue(statistics, "Shots off Goal") ?? 0,
+      totalShotsGoal: _getStatisticValue(statistics, "Total Shots") ?? 0,
+      blockedShots: _getStatisticValue(statistics, "Blocked Shots") ?? 0,
+      shotsInsideBox: _getStatisticValue(statistics, "Shots insidebox") ?? 0,
+      shotsOutsideBox: _getStatisticValue(statistics, "Shots outsidebox") ?? 0,
+      fouls: _getStatisticValue(statistics, "Fouls") ?? 0,
+      connerKicks: _getStatisticValue(statistics, "Corner Kicks") ?? 0,
+      offsides: _getStatisticValue(statistics, "Offsides") ?? 0,
+      possession: _getStatisticValue(statistics, "Ball Possession") ?? 0,
+      yellowCards: _getStatisticValue(statistics, "Yellow Cards") ?? 0,
+      redCards: _getStatisticValue(statistics, "Red Cards") ?? 0,
+      totalPasses: _getStatisticValue(statistics, "Total passes") ?? 0,
+      passesAccurate: _getStatisticValue(statistics, "Passes accurate") ?? 0,
+    );
+  }
+
+  static dynamic _getStatisticValue(List<dynamic> statistics, String type) {
+    final stat = statistics.firstWhere((stat) => stat['type'] == type,
+        orElse: () => null);
+    return stat != null ? stat['value'] : null;
   }
 }

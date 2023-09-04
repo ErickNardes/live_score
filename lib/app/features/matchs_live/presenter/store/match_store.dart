@@ -1,10 +1,9 @@
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:live_score/app/features/matchs_live/domain/entities/macthe_entity.dart';
 import 'package:live_score/app/features/matchs_live/domain/entities/usecase/i_get_match_of_league_usecase.dart';
 import 'package:live_score/app/features/matchs_live/presenter/store/match_state.dart';
 
-class MatchStore extends Store<MatchState> implements Disposable {
+class MatchStore extends Store<MatchState> {
   final IGetMatchOfLeagueUsecase _iGetMatchOfLeagueUsecase;
 
   MatchStore(
@@ -36,10 +35,5 @@ class MatchStore extends Store<MatchState> implements Disposable {
         print(state.matchLiveList.map((e) => e.statusElapsed).first);
       },
     );
-  }
-
-  @override
-  void dispose() {
-    super.destroy();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:live_score/app/features/details_match/presenter/pages/details_match_live_page.dart';
 
 import 'package:live_score/app/features/home_page/controler/home_controller.dart';
 import 'package:live_score/app/features/matchs_live/presenter/widgets/card_row_match_widget.dart';
@@ -41,7 +42,7 @@ class _ListTileLiveMatchWidgetState extends State<ListTileLiveMatchWidget> {
               child: Row(
                 children: [
                   SizedBox(
-                      height: size.width * 0.1,
+                      height: size.width * 0.13,
                       width: size.width * 0.08,
                       child: matchesInCountry
                               .map((e) => e.flagLeague)
@@ -66,12 +67,22 @@ class _ListTileLiveMatchWidgetState extends State<ListTileLiveMatchWidget> {
               ),
             ),
             Column(
-              children: matchesInCountry.map((match) {
-                return CardRowMatchWidget(
-                  matchEntity: match,
-                );
-              }).toList(),
-            ),
+                children: matchesInCountry.map((match) {
+              return CardRowMatchWidget(
+                onTap: () async {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                    return DetailsMatchLivePage(
+                      controller: widget.homeController,
+                      matchLive: match,
+                    );
+                  }));
+
+                  await widget.homeController.detailsMatchLiveStore
+                      .getDetailsMatchLive(match.idFixture);
+                },
+                matchEntity: match,
+              );
+            }).toList())
           ],
         );
       },

@@ -6,8 +6,11 @@ import '../features/home_page/controler/home_controller.dart';
 class HomeModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind((i) =>
-        HomeController(leagueStore: i(), tableCampStore: i(), matchStore: i())),
+    Bind((i) => HomeController(
+        leagueStore: i(),
+        tableCampStore: i(),
+        matchStore: i(),
+        detailsMatchLiveStore: i())),
   ];
 
   @override

@@ -9,7 +9,7 @@ class GetDetailsMatchUsecase implements IGetDetailsMatchUsecase {
   const GetDetailsMatchUsecase(this._repository);
 
   @override
-  Future<Either<Exception, DetailsMatchEntity>> call(int idMatch) async {
+  Future<Either<Exception, List<DetailsMatchEntity>>> call(int idMatch) async {
     return await _repository.call(idMatch);
   }
 }

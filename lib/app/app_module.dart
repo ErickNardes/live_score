@@ -1,4 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:live_score/app/features/details_match/domain/usecase/get_details_match_usecase.dart';
+import 'package:live_score/app/features/details_match/external/datasource/get_details_match_datasource.dart';
+import 'package:live_score/app/features/details_match/infra/repository/get_details_match_repository.dart';
+import 'package:live_score/app/features/details_match/presenter/store/details_match_store.dart';
 import 'package:live_score/app/features/home_page/controler/home_controller.dart';
 import 'package:live_score/app/features/leagues/domain/usecase/get_leagues_usecase.dart';
 import 'package:live_score/app/features/leagues/external/datasource/get_league_datasource.dart';
@@ -18,6 +22,11 @@ import 'core/home_module.dart';
 class AppModule extends Module {
   @override
   final List<Bind> binds = [
+    //detailsMatchLive
+    Bind.lazySingleton((i) => GetDetailsMatchUsecase(i())),
+    Bind.lazySingleton((i) => GetDetailsMatchRepository(i())),
+    Bind.lazySingleton((i) => GetDetailsMatchDatasource()),
+    Bind((i) => DetailsMatchLiveStore(i())),
     //getMatch
     Bind.lazySingleton((i) => GetMatchOfLeagueUsecase(i())),
     Bind.lazySingleton((i) => GetMatchOfLeagueRepository(i())),
@@ -35,8 +44,11 @@ class AppModule extends Module {
     Bind((i) => GetTableCampRepository(i())),
     Bind((i) => GetTableCampUsecase(i())),
     Bind((i) => TableCampStore(i())),
-    Bind((i) =>
-        HomeController(leagueStore: i(), tableCampStore: i(), matchStore: i())),
+    Bind((i) => HomeController(
+        leagueStore: i(),
+        tableCampStore: i(),
+        matchStore: i(),
+        detailsMatchLiveStore: i())),
   ];
 
   @override

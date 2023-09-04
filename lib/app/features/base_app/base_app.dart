@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:live_score/app/features/home_page/controler/home_controller.dart';
 import 'package:live_score/app/features/home_page/pages/home_page.dart';
 import 'package:live_score/app/features/leagues/presenter/pages/league_page.dart';
